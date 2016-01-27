@@ -1,0 +1,352 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>LVL99 Nice Screen</title>
+    <link rel="stylesheet" type="text/css" href="/jquery-lvl99-nicescreen.css" />
+    <style type="text/css">
+    <!--
+    body {
+      font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+      font-size: 16px;
+      line-height: 1.5em;
+    }
+
+    dl,
+    li,
+    p {
+      max-width: 600px;
+    }
+
+    .site {
+      position: absolute;
+      left: 0;
+      top: 0;
+      right: 0;
+      bottom: 0;
+    }
+
+    .site header {
+      position: absolute;
+      left: 0;
+      right: 0;
+      top: 0;
+      height: 100px;
+      z-index: 5;
+      padding: 10px;
+      box-sizing: border-box;
+    }
+
+    .site nav ul {
+      display: block;
+      margin: 0;
+      padding: 0;
+      list-style: none;
+    }
+
+    .site nav ul li {
+      display: inline-block;
+      margin: 0;
+      padding: 0;
+      list-style: none;
+    }
+
+    .site nav ul li a {
+      padding: 5px 10px;
+    }
+
+    #viewport {
+      position: absolute;
+      left: 0;
+      right: 0;
+      top: 100px;
+      bottom: 0;
+      z-index: 1;
+      overflow: hidden;
+    }
+
+    #viewport > .screen {
+      box-sizing: border-box;
+      padding: 10px;
+      overflow: auto;
+      width: 100%;
+      height: 100%;
+    }
+
+    #screen-spacial h2 {
+      position: absolute;
+      left: 10px;
+      top: 10px;
+      z-index: 10;
+    }
+
+    #spacial-viewport {
+      position: absolute;
+      left: 0;
+      top: 0;
+      right: 0;
+      bottom: 0;
+      overflow: hidden;
+      background-color: #999;
+    }
+
+    #spacial-viewport > .screen {
+      box-sizing: border-box;
+      background-color: white;
+      padding: 10px;
+      padding-top: 4em;
+      overflow: auto;
+      width: 100%;
+      height: 100%;
+    }
+    -->
+    </style>
+  </head>
+  <body>
+    <section class="site">
+      <header>
+        <h1>LVL99 Nice Screen <small>v0.1.0</small></h1>
+        <nav>
+        <ul>
+          <li><a href="#screen-about">About</a></li>
+          <li><a href="#screen-features">Features</a></li>
+          <li><a href="#screen-spacial">Spacial transitions</a></li>
+        </nav>
+      </header>
+
+      <section id="viewport" class="ui-nicescreen-viewport">
+        
+        <article id="screen-about" class="screen" data-nicescreen-column="0">
+          <h2>About</h2>
+          <p>jQuery plugin which enables app-like animated transitions.</p>
+
+          <dl>
+            <dt>Author</dt>
+            <dd>Matt Scheurich &lt;<a href="mailto:matt@lvl99.com">matt@lvl99.com</a>&gt; (<a href="http://lvl99.com/">lvl99.com</a>)</dd>
+            <dt>Github Repo</dt>
+            <dd><a href="https://github.com/lvl99/jquery-lvl99-nicescreen">github.com/lvl99/jquery-lvl99-nicescreen</a></dd>
+          </dl>
+
+        </article><!-- /#screen-about -->
+
+        <article id="screen-features" class="screen" data-nicescreen-column="1">
+          <h2>Features</h2>
+          <ul>
+            <li>Total reliance on <abbr title="Cascading Stylesheets">CSS</abbr> for animations and rendering (no <abbr title="JavaScript">JS</abbr> or <code>jQuery.animate</code> used)</li>
+            <li>Spacial transitions: move between screens in directions left, right, up and down depending on row/column values</li>
+            <li>Supports multiple &amp; nested viewports</li>
+            <li>Plenty of jQuery custom events to hook into. Can be used in conjunction with AJAX to pull external files into new screens</li>
+          </ul>
+        </article><!-- /#screen-another -->
+
+        <article id="screen-spacial" class="screen" data-nicescreen-column="2">
+          <h2>Spacial transitions <select id="spacial-transition">
+            <optgroup label="Transition type">
+              <option value="slide" checked="checked">Slide</option>
+              <option value="3d">3D</option>
+              <option value="card">Card</option>
+            </optgroup>
+          </select></h2>
+          <div id="spacial-viewport" class="ui-nicescreen-viewport" data-nicescreen-transition="slide" data-nicescreen-group="spacial">
+
+            <article id="spacial-tl" class="screen" data-nicescreen-row="1" data-nicescreen-column="1">
+              <table cellpadding="5" cellspacing="5">
+                <tr>
+                  <td style="background-color: #ddd;"><a href="#spacial-tl">Top Left</a></td>
+                  <td><a href="#spacial-tc">Top Center</a></td>
+                  <td><a href="#spacial-tr">Top Right</a></td>
+                </tr>
+                <tr>
+                  <td><a href="#spacial-ml">Middle Left</a></td>
+                  <td><a href="#spacial-mc">Middle Center</a></td>
+                  <td><a href="#spacial-mr">Middle Right</a></td>
+                </tr>
+                <tr>
+                  <td><a href="#spacial-bl">Bottom Left</a></td>
+                  <td><a href="#spacial-bc">Bottom Center</a></td>
+                  <td><a href="#spacial-br">Bottom Right</a></td>
+                </tr>
+              </table>
+              <p>Nice Screen supports nested viewports and multiple transition types. Since all the animation information is located within the CSS, customisation (like animation speed) and extensions (additional transition types) is all available through CSS.</p>
+              <p>Spacial transitions allow setting a row and column order for the screens. The transition will change depending on the row/column offset.</p>
+            </article><!-- /#spacial-tl -->
+
+            <article id="spacial-tc" class="screen" data-nicescreen-row="1" data-nicescreen-column="2">
+              <table cellpadding="5" cellspacing="5">
+                <tr>
+                  <td><a href="#spacial-tl">Top Left</a></td>
+                  <td style="background-color: #ddd;"><a href="#spacial-tc">Top Center</a></td>
+                  <td><a href="#spacial-tr">Top Right</a></td>
+                </tr>
+                <tr>
+                  <td><a href="#spacial-ml">Middle Left</a></td>
+                  <td><a href="#spacial-mc">Middle Center</a></td>
+                  <td><a href="#spacial-mr">Middle Right</a></td>
+                </tr>
+                <tr>
+                  <td><a href="#spacial-bl">Bottom Left</a></td>
+                  <td><a href="#spacial-bc">Bottom Center</a></td>
+                  <td><a href="#spacial-br">Bottom Right</a></td>
+                </tr>
+              </table>
+            </article><!-- /#spacial-tc -->
+
+            <article id="spacial-tr" class="screen" data-nicescreen-row="1" data-nicescreen-column="3">
+              <table cellpadding="5" cellspacing="5">
+                <tr>
+                  <td><a href="#spacial-tl">Top Left</a></td>
+                  <td><a href="#spacial-tc">Top Center</a></td>
+                  <td style="background-color: #ddd;"><a href="#spacial-tr">Top Right</a></td>
+                </tr>
+                <tr>
+                  <td><a href="#spacial-ml">Middle Left</a></td>
+                  <td><a href="#spacial-mc">Middle Center</a></td>
+                  <td><a href="#spacial-mr">Middle Right</a></td>
+                </tr>
+                <tr>
+                  <td><a href="#spacial-bl">Bottom Left</a></td>
+                  <td><a href="#spacial-bc">Bottom Center</a></td>
+                  <td><a href="#spacial-br">Bottom Right</a></td>
+                </tr>
+              </table>
+            </article><!-- /#spacial-tr -->
+
+            <article id="spacial-ml" class="screen" data-nicescreen-row="2" data-nicescreen-column="1">
+              <table cellpadding="5" cellspacing="5">
+                <tr>
+                  <td><a href="#spacial-tl">Top Left</a></td>
+                  <td><a href="#spacial-tc">Top Center</a></td>
+                  <td><a href="#spacial-tr">Top Right</a></td>
+                </tr>
+                <tr>
+                  <td style="background-color: #ddd;"><a href="#spacial-ml">Middle Left</a></td>
+                  <td><a href="#spacial-mc">Middle Center</a></td>
+                  <td><a href="#spacial-mr">Middle Right</a></td>
+                </tr>
+                <tr>
+                  <td><a href="#spacial-bl">Bottom Left</a></td>
+                  <td><a href="#spacial-bc">Bottom Center</a></td>
+                  <td><a href="#spacial-br">Bottom Right</a></td>
+                </tr>
+              </table>
+            </article><!-- /#spacial-ml -->
+
+            <article id="spacial-mc" class="screen" data-nicescreen-row="2" data-nicescreen-column="2">
+              <table cellpadding="5" cellspacing="5">
+                <tr>
+                  <td><a href="#spacial-tl">Top Left</a></td>
+                  <td><a href="#spacial-tc">Top Center</a></td>
+                  <td><a href="#spacial-tr">Top Right</a></td>
+                </tr>
+                <tr>
+                  <td><a href="#spacial-ml">Middle Left</a></td>
+                  <td style="background-color: #ddd;"><a href="#spacial-mc">Middle Center</a></td>
+                  <td><a href="#spacial-mr">Middle Right</a></td>
+                </tr>
+                <tr>
+                  <td><a href="#spacial-bl">Bottom Left</a></td>
+                  <td><a href="#spacial-bc">Bottom Center</a></td>
+                  <td><a href="#spacial-br">Bottom Right</a></td>
+                </tr>
+              </table>
+            </article><!-- /#spacial-mc -->
+
+            <article id="spacial-mr" class="screen" data-nicescreen-row="2" data-nicescreen-column="3">
+              <table cellpadding="5" cellspacing="5">
+                <tr>
+                  <td><a href="#spacial-tl">Top Left</a></td>
+                  <td><a href="#spacial-tc">Top Center</a></td>
+                  <td><a href="#spacial-tr">Top Right</a></td>
+                </tr>
+                <tr>
+                  <td><a href="#spacial-ml">Middle Left</a></td>
+                  <td><a href="#spacial-mc">Middle Center</a></td>
+                  <td style="background-color: #ddd;"><a href="#spacial-mr">Middle Right</a></td>
+                </tr>
+                <tr>
+                  <td><a href="#spacial-bl">Bottom Left</a></td>
+                  <td><a href="#spacial-bc">Bottom Center</a></td>
+                  <td><a href="#spacial-br">Bottom Right</a></td>
+                </tr>
+              </table>
+            </article><!-- /#spacial-mr -->
+
+            <article id="spacial-bl" class="screen" data-nicescreen-row="3" data-nicescreen-column="1">
+              <table cellpadding="5" cellspacing="5">
+                <tr>
+                  <td><a href="#spacial-tl">Top Left</a></td>
+                  <td><a href="#spacial-tc">Top Center</a></td>
+                  <td><a href="#spacial-tr">Top Right</a></td>
+                </tr>
+                <tr>
+                  <td><a href="#spacial-ml">Middle Left</a></td>
+                  <td><a href="#spacial-mc">Middle Center</a></td>
+                  <td><a href="#spacial-mr">Middle Right</a></td>
+                </tr>
+                <tr>
+                  <td style="background-color: #ddd;"><a href="#spacial-bl">Bottom Left</a></td>
+                  <td><a href="#spacial-bc">Bottom Center</a></td>
+                  <td><a href="#spacial-br">Bottom Right</a></td>
+                </tr>
+              </table>
+            </article><!-- /#spacial-bl -->
+
+            <article id="spacial-bc" class="screen" data-nicescreen-row="3" data-nicescreen-column="2">
+              <table cellpadding="5" cellspacing="5">
+                <tr>
+                  <td><a href="#spacial-tl">Top Left</a></td>
+                  <td><a href="#spacial-tc">Top Center</a></td>
+                  <td><a href="#spacial-tr">Top Right</a></td>
+                </tr>
+                <tr>
+                  <td><a href="#spacial-ml">Middle Left</a></td>
+                  <td><a href="#spacial-mc">Middle Center</a></td>
+                  <td><a href="#spacial-mr">Middle Right</a></td>
+                </tr>
+                <tr>
+                  <td><a href="#spacial-bl">Bottom Left</a></td>
+                  <td style="background-color: #ddd;"><a href="#spacial-bc">Bottom Center</a></td>
+                  <td><a href="#spacial-br">Bottom Right</a></td>
+                </tr>
+              </table>
+            </article><!-- /#spacial-bc -->
+
+            <article id="spacial-br" class="screen" data-nicescreen-row="3" data-nicescreen-column="3">
+              <table cellpadding="5" cellspacing="5">
+                <tr>
+                  <td><a href="#spacial-tl">Top Left</a></td>
+                  <td><a href="#spacial-tc">Top Center</a></td>
+                  <td><a href="#spacial-tr">Top Right</a></td>
+                </tr>
+                <tr>
+                  <td><a href="#spacial-ml">Middle Left</a></td>
+                  <td><a href="#spacial-mc">Middle Center</a></td>
+                  <td><a href="#spacial-mr">Middle Right</a></td>
+                </tr>
+                <tr>
+                  <td><a href="#spacial-bl">Bottom Left</a></td>
+                  <td><a href="#spacial-bc">Bottom Center</a></td>
+                  <td style="background-color: #ddd;"><a href="#spacial-br">Bottom Right</a></td>
+                </tr>
+              </table>
+            </article><!-- /#spacial-br -->
+
+          </div><!-- /#spacial-viewport -->
+        </article><!-- /#screen-spacial -->
+
+      </section><!-- /.viewport -->
+    </section><!-- /.site -->
+
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
+    <script type="text/javascript" src="/jquery-lvl99-nicescreen.js"></script>
+    <script type="text/javascript">
+      jQuery(document).ready( function ($) {
+        $('#viewport .screen').nicescreen();
+
+        // Change spacial transition type via drop-down
+        $('#spacial-transition').change( function (event) {
+          $('#spacial-viewport').attr('data-nicescreen-transition', $(this).val());
+        });
+      });
+    </script>
+  </body>
+</html>
