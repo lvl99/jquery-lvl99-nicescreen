@@ -5,6 +5,7 @@
 .DS_Store?
 ehthumbs.db
 Thumbs.db
+.idea
 
 # Node
 node_modules

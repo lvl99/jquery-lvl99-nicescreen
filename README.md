@@ -4,6 +4,11 @@ jQuery plugin which enables app-like animated transitions between screens.
 
 Author [Matt Scheurich](http://lvl99.com) <[matt@lvl99.com](mailto:matt@lvl99.com?subject=LVL99+Nice+Screen)>
 
+## Demos:
+
+* Basic features: https://codepen.io/lvl99/pen/GOEozV
+* Simple example of screen transition types: https://codepen.io/lvl99/pen/JOJGmZ
+
 ***
 
 ## Features
